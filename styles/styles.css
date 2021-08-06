@@ -44,6 +44,7 @@ p{
 #btnGuardar{
     /* background-color: rgb(73, 168, 60); */
     background-color: rgb(107, 205, 50);
+    border-radius: 5px;
     color: white;
 }
 
@@ -61,6 +62,12 @@ p{
 }
 
 #promedio{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#minimo{
     display: flex;
     flex-direction: column;
     

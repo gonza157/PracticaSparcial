@@ -40,7 +40,7 @@
                     <!-- <div class="col-md-2"></div> -->
                     <div class="seleccion text-center  col-md-8 col-xs">
                         <div  id="filtrarTran">
-                            <label class="mt-3" for="txtTitulo">FILTRAR TRANSACCION</label> 
+                            <label class="mt-3" for="txtTitulo">FILTRAR TRANSACCION</label>
                             <div>
                                 <select id="filtrar">
                                     <option value="N/A">N/A</option>
@@ -52,7 +52,11 @@
         
                         <div  id="promedio">
                             <label class="mt-3" for="txtTitulo">PROMEDIO</label> 
-                            <input type="text" name="promedio" placeholder="">
+                            <input class="pepe"  type="text" name="promedio" placeholder="promedio">
+                        </div>
+                        <div  id="minimo">
+                            <label class="mt-3" for="txtTitulo">Minimo</label> 
+                            <input class="pepa"  type="text" name="promedio" placeholder="minimo">
                         </div>
                     
                     </div>
@@ -156,25 +160,37 @@
                 </div>
         </div>   
 
-            <div class="row justify-content-around">
-                <div class="col-2 ">
-
+            <div class="row justify-content-center">
+                <div class="col-2">
                     <button type="submit" id="btnGuardar"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
                     <!-- <input type="submit" id="btnGuardar" value="Guardar"> -->
-                    <input type="button" id="btnModificar" class="oculto" value="Modificar">
-                    <input type="button" id="btnEliminar" class="oculto" value="Eliminar">
+                    <!-- <input type="button" id="btnModificar" class="oculto" value="Modificar">
+                    <input type="button" id="btnEliminar" class="oculto" value="Eliminar"> -->
+                    <div class="col-2 ">
+                        <input type="button" id="btnModificar" class="oculto" value="Modificar">
+                    </div>
+                    <div class="col-2 ">                    
+                        <input type="button" id="btnEliminar" class="oculto" value="Eliminar">                   
+                    </div>
                 </div>
             </div>
         </form>
         </div>
             <div class="text-center mt-3" id="spinner-container"></div>
-            <div class="row justify-content-around mt-5">
-                <div class="col-md-8 col-sm-start ">
-                    <div  id="divTabla"></div>
+                <div class="row justify-content-around mt-5">
+                    <div class="col-md-8 col-sm-start ">
+                        <div  id="divTabla"></div>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
 
-        </div>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
 
     </main>
     <footer>

@@ -1,19 +1,26 @@
 {
-    "Anuncios":[
-        {
-            "id": 1,
-            "nombre": "Donato",
-            "especialidad": "Pastas"
-        },
-        {
-            "id": 2,
-            "nombre": "German",
-            "especialidad": "Verduras"
-        },
-        {
-            "id": 3,
-            "nombre": "Damian",
-            "especialidad": "Postres"
-        }
-    ]
+  "Anuncios": [
+    {
+      "id": 1628287572878,
+      "titulo": "gonza",
+      "transaccion": "Venta",
+      "descripcion": "gonza",
+      "precio": "24",
+      "puertas": "3",
+      "kms": "10.000",
+      "potencia": "potencia",
+      "fecha": "2021-08-06T22:06:12.878Z"
+    },
+    {
+      "id": 1628288489418,
+      "titulo": "gi",
+      "transaccion": "Venta",
+      "descripcion": "gi",
+      "precio": "1.000.000",
+      "puertas": "3",
+      "kms": "24",
+      "potencia": "potencia",
+      "fecha": "2021-08-06T22:21:29.418Z"
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 //import { Anuncio } from "./Anuncio";
 import { Anuncio_Auto } from "./Anuncio_Auto.js";
-const Anuncios = JSON.parse(localStorage.getItem("lista")) || [];
+const anunciosLocal = JSON.parse(localStorage.getItem("lista")) || [];
+let Anuncios = [];
 
 document.forms[0].addEventListener("submit", handlerSubmit);
 document.addEventListener("click", handlerClick);
@@ -16,18 +17,37 @@ document.getElementById("potenciach").addEventListener("click",filtrarTabla);
 document.getElementById("filtrar").addEventListener("change",filtrarPorTransaccion);
 
 
-if (Anuncios.length > 0) {
-  handlerLoadTabla(Anuncios);
+
+if (Anuncios.length != null) {
+  
+    getDatosFech();
+    handlerLoadTabla();
+ 
+  // document.querySelector(".pepe").value = 2;
+  // console.log(document.querySelector(".pepe").value);
+  
+}
+
+function cargarInput(){
+  let precios = Anuncios.map(obj=>{
+    return obj.precio;
+  })
+  console.log(precios);
+   const numeros = precios.reduce((prev,actual)=>{
+    return  parseInt(prev)  + parseInt(actual) / precios.length;
+  });   
+
+  document.querySelector(".pepe").value = 23;
 }
 
 function altaAnuncio(anuncio) {
-  Anuncios.push(anuncio);
-  almacenarDatos(Anuncios);
+  anunciosLocal.push(anuncio);
+  almacenarDatos(anunciosLocal);
 }
 
 function almacenarDatos(data) {
   localStorage.setItem("lista", JSON.stringify(data));
-  handlerLoadTabla();
+  //handlerLoadTabla();
 }
 
 function handlerLoadTabla() {
@@ -85,6 +105,8 @@ function cargarFormulario(id) {
     //document.getElementById("btnGuardar").textContent = "Modificar";
     document.getElementById("btnModificar").classList.remove("oculto");
     document.getElementById("btnEliminar").classList.remove("oculto");
+    document.getElementById("btnEliminar").setAttribute("class","btn btn-danger");
+    document.getElementById("btnModificar").setAttribute("class","btn btn-warning");
   }
 
   function filtrarTabla(){
@@ -117,6 +139,7 @@ function cargarFormulario(id) {
         return aux;
      })
      renderizarTabla(crearTabla(nuevoArray), document.getElementById("divTabla"));
+     altaAnuncio(aux);
 
 }
 
@@ -128,6 +151,28 @@ function filtrarPorTransaccion(){
       
       return bj.transaccion == "Venta" ;
     });
+    const arrayPrecios = nuevoArray.map(bj=>{
+      return bj.precio ;
+    });
+    console.log(arrayPrecios);
+    const precio = arrayPrecios.reduce((prev,actual)=>{
+         return  parseInt(prev)  + parseInt(actual) / arrayPrecios.length;
+       });
+    
+       const arrayprecio2 = nuevoArray.map(bj=>{
+        return bj.precio ;
+      });
+      const precio2 = arrayprecio2.reduce((prev,actual)=>{
+        let minimo =parseInt(prev);
+        if(minimo > parseInt(actual) ){
+          minimo = parseInt(actual);
+        }
+           return  minimo;
+         });
+
+       document.querySelector(".pepe").value = precio;
+       document.querySelector(".pepa").value = precio2;
+
     renderizarTabla(crearTabla(nuevoArray), document.getElementById("divTabla"));
   }
 
@@ -137,6 +182,27 @@ function filtrarPorTransaccion(){
       
       return bj.transaccion == "Alquiler";
     });
+    const arrayPrecios1 = nuevoArray1.map(bj=>{
+      return bj.precio ;
+    });
+
+    const precio1 = arrayPrecios1.reduce((prev,actual)=>{
+         return  parseInt(prev)  + parseInt(actual) / arrayPrecios.length;
+       });
+
+       const arrayprecio2 = nuevoArray1.map(bj=>{
+        return bj.precio ;
+      });
+      const precio2 = arrayprecio2.reduce((prev,actual)=>{
+        let minimo =parseInt(prev);
+        if(minimo > parseInt(actual) ){
+          minimo = parseInt(actual);
+        }
+           return  minimo;
+         });
+
+       document.querySelector(".pepe").value = precio1;
+       document.querySelector(".pepa").value = precio2;
     renderizarTabla(crearTabla(nuevoArray1), document.getElementById("divTabla"));
   }
 
@@ -167,28 +233,32 @@ function handlerSubmit(e) {
       frm.potencia.value
     );
     if (confirm("Desea modificar a este anuncio")) {
-      agregarSpinner();
-      setTimeout(() => {
-        modificarAnuncio(anuncioEditado);
-        eliminarSpinner();
-      }, 3000);
+      putDatosFech(anuncioEditado,parseInt(frm.id.value));
+      console.log("paso");
+      // agregarSpinner();
+      // setTimeout(() => {
+      //   modificarAnuncio(anuncioEditado);
+      //   eliminarSpinner();
+      // }, 3000);
     }
   } else {
-    const nuevoAnuncio = new Anuncio_Auto(
-        Date.now(),
+    let fecha = new Date;
+    const nuevoAnuncio = new Anuncio_Auto(Date.now(),
         frm.titulo.value,
         frm.transaccion.value,
         frm.descripcion.value,
         frm.precio.value,
         frm.puertas.value,
         frm.kms.value,
-        frm.potencia.value
+        frm.potencia.value,
+        fecha
     );
-    agregarSpinner();
-    setTimeout(() => {
-      altaAnuncio(nuevoAnuncio);
-      eliminarSpinner();
-    }, 3000);
+    postDatosFech(nuevoAnuncio);
+    // agregarSpinner();
+    // setTimeout(() => {
+    //   altaAnuncio(nuevoAnuncio);
+    //   eliminarSpinner();
+    // }, 3000);
     
   }
   limpiarFormulario(e.target);
@@ -206,22 +276,13 @@ function handlerClick(e) {
   } else if (e.target.matches("#btnEliminar")) {
     let id = parseInt(document.forms[0].id.value);
     if (confirm("confirma eliminacion")) {
-      //personas.findIndex((el)=> el.id == id) esta funcion me devuelve el indice de un elemento del array
-      agregarSpinner();
-      setTimeout(() => {
-        Anuncios.splice(
-          Anuncios.findIndex((el) => el.id == id),
-          1
-        ); // esta funcion saca del array un elemento o la cantidad de elementos que yo quiera pasandoselo como param , el primer param es el index y el segundo la cantidad de elementos que quiero que borre
-        almacenarDatos(Anuncios);
-        limpiarFormulario(document.forms[0]);
-        eliminarSpinner();
-      }, 3000);
+      deleteDatosFech(id);
     } else {
       limpiarFormulario(document.forms[0]);
     }
   }else if(e.target.matches("#btnModificar")){
     let frm = document.forms[0];
+    let fecha = new Date;
     const AnuncioAModificar = new Anuncio_Auto(
       frm.id.value,
      frm.titulo.value,
@@ -230,15 +291,11 @@ function handlerClick(e) {
      frm.precio.value,
      frm.puertas.value,
      frm.kms.value,
-     frm.potencia.value);
-    if (confirm("confirma Modificacion")) {      
-      agregarSpinner();
-      setTimeout(() => {        
-        console.log(AnuncioAModificar);
-        modificarAnuncio(AnuncioAModificar);
-        limpiarFormulario(document.forms[0]);
-        eliminarSpinner();
-      }, 3000);
+     frm.potencia.value,
+     fecha);
+    if (confirm("confirma Modificacion")) { 
+      putDatosFech( AnuncioAModificar,parseInt(frm.id.value));
+      console.log("paso");     
     }else{
       limpiarFormulario(document.forms[0]);
     }
@@ -291,3 +348,119 @@ function CreatBody(items) {
   });
   return tbopdy;
 }
+
+function getDatosFech (){
+  
+  fetch("http://localhost:3000/Anuncios")
+  .then((res)=>{
+    //console.log(res);
+    return res.ok ? res.json(): Promise.reject(res); 
+  })
+  .then((data)=>{
+    Anuncios = data;
+    handlerLoadTabla(Anuncios);                        
+  }) 
+  .catch(err=>{
+    console.error(`Error: ${err.status}:${err.statusText}`);
+  })
+  
+}
+
+
+function postDatosFech (nuevoA){
+
+document.querySelector("#spinner-container").appendChild(geteSpinner());
+
+const options = {
+  method:"POST",
+  headers:{
+    "Content-Type":"application/json;charset=utf-8"
+  },
+  body:JSON.stringify(nuevoA)
+};
+
+fetch("http://localhost:3000/Anuncios", options)
+.then((res)=>{
+  //console.log(res);
+  return res.ok ? res.json(): Promise.reject(res); 
+})
+.then((data)=>{
+  console.log(data);                        
+})  
+.catch(err=>{
+  console.error(`Error: ${err.status}:${err.statusText}`);
+})
+.finally(()=>{
+  document.querySelector(".spinner").removeChild(document.querySelector(".spinner").firstElementChild);
+})
+
+
+}
+
+function deleteDatosFech (id){
+
+document.querySelector("#spinner-container").appendChild(geteSpinner());
+
+const options = {
+  method:"DELETE",
+  headers:{
+    "Content-Type":"application/json;charset=utf-8"
+  }
+};
+
+fetch("http://localhost:3000/Anuncios/"+id, options)
+.then((res)=>{
+  //console.log(res);
+  return res.ok ? res.json(): Promise.reject(res); 
+})
+.then((data)=>{
+  console.log(data);                        
+})  
+.catch(err=>{
+  console.error(`Error: ${err.status}:${err.statusText}`);
+})
+.finally(()=>{
+  document.querySelector(".spinner").removeChild(document.querySelector(".spinner").firstElementChild);
+})
+
+
+}
+
+function putDatosFech (aEditado,id){
+
+document.querySelector("#spinner-container").appendChild(geteSpinner());
+
+const options = {
+  method:"PUT",
+  headers:{
+    "Content-Type":"application/json;charset=utf-8"
+  },
+  body:JSON.stringify(aEditado)
+};
+
+fetch("http://localhost:3000/Anuncios/"+id, options)
+.then((res)=>{
+  //console.log(res);
+  return res.ok ? res.json(): Promise.reject(res); 
+})
+.then((data)=>{
+  //console.log(data);                        
+})  
+.catch(err=>{
+  console.error(`Error: ${err.status}:${err.statusText}`);
+})
+.finally(()=>{
+  document.querySelector(".spinner").removeChild(document.querySelector(".spinner").firstElementChild);
+})
+
+
+}
+
+
+const geteSpinner = ()=>{
+const spinner = document.createElement("img");
+spinner.setAttribute("src","./assets/spenner-Velocimetro.gif");
+spinner.setAttribute("alt" , "imagen spinner");
+return spinner;
+}
+
