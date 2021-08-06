@@ -14,7 +14,7 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
+    <header >
         <img src="./image/logo.png" alt="logo de empresa" id="logo">
         <nav>
             <ul>
@@ -38,7 +38,7 @@
             <div id="filtrarContenedor">
                 <div class="row justify-content-center mt-4">
                     <!-- <div class="col-md-2"></div> -->
-                    <div class="seleccion text-center  col-md-8 ">
+                    <div class="seleccion text-center  col-md-8 col-xs">
                         <div  id="filtrarTran">
                             <label class="mt-3" for="txtTitulo">FILTRAR TRANSACCION</label> 
                             <div>
@@ -65,102 +65,96 @@
         
             <div class="row justify-content-around mt-5 text-center" id="checkbox">
 
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtTitulo">TITULO</label> 
                     <input  type="checkbox" id="tituloch" checked = "true" >
                 </div>
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtTransaccion">TRANSACCION</label> 
                     <input type="checkbox" id="transaccionch" checked = "true" >
                 </div>
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtDescripcion">DESCRIPCION</label> 
                     <input type="checkbox" id="descripcionch" checked = "true">
                 </div>
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtPrecio">PRECIO</label> 
                     <input type="checkbox" id="precioch" checked = "true">
                 </div>
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtPuertas">NUM_PUERTAS</label> 
                     <input type="checkbox" id="puertasch" checked = "true">
                 </div>
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtKms">NUM_KMS</label> 
                     <input type="checkbox" id="kmsch" checked = "true">
                 </div>
-                <div class="col-lg-1 col-md-1 col-1">
+                <div class="col-lg-1 col-md-2 col-sm-4 col-3">
                     <label for="txtPotencia">POTENCIA</label> 
                     <input type="checkbox" id="potenciach" checked = "true">
                 </div>
 
             </div>
         
+            <div class="row ">
+                <div class="container mt-4 mb-4 col-md-8 col-sm-8 " >
+                    <fieldset id="fieldsetAnuncios">
+
+                        <legend>Informacion Del Anuncios</legend>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label for="txtTitulo">TITULO:</label> <br>
+                                <input class="form-control form-control-lg" type="text" name="titulo" placeholder="Titulo"><br><br>
+                            </div>
+                        </div>
             
-            <div class="container mt-4 mb-4 " >
-                <fieldset id="fieldsetAnuncios">
+                        <div class="row ">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label for="txtRadio">TRANSACCION:</label> <br>
+                            <input class="inpCenter " type="radio" name="transaccion" value="Venta"> Venta
+                            <input class="inpCenter" type="radio" name="transaccion" value="Alquiler"> Alquiler <br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label for="txtDescripcion">DESCRIPCION</label><br>
+                                <input class="form-control form-control-lg" type="text" name="descripcion" placeholder="Descipcion"><br><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-12">
+                                <label for="txtPrecio">PRECIO</label><br>
+                                <input class="form-control form-control-lg" type="text" name="precio" placeholder="Precio"><br><br>
+                            </div>
+                        </div>  
 
-                    <legend>Informacion Del Anuncios</legend>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12">
-                            <label for="txtTitulo">TITULO:</label> <br>
-                            <input class="form-control form-control-lg" type="text" name="titulo" placeholder="Titulo"><br><br>
-                        </div>
-                    </div>
-        
-                    <div class="row ">
-                        <div class="col-lg-12 col-md-12 col-12">
-                            <label for="txtRadio">TRANSACCION:</label> <br>
-                        <input class="inpCenter " type="radio" name="transaccion" value="Venta"> Venta
-                        <input class="inpCenter" type="radio" name="transaccion" value="Alquiler"> Alquiler <br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12">
-                            <label for="txtDescripcion">DESCRIPCION</label><br>
-                            <input class="form-control form-control-lg" type="text" name="descripcion" placeholder="Descipcion"><br><br>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12">
-                            <label for="txtDescripcion">DESCRIPCION</label><br>
-                            <input class="form-control form-control-lg" type="text" name="descripcion" placeholder="Descipcion"><br><br>
-                        </div>
-                    </div>             
-
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12">
-                            <label for="txtPrecio">PRECIO</label><br>
-                            <input class="form-control form-control-lg" type="text" name="precio" placeholder="Precio"><br><br>
-                        </div>
-                    </div>  
-
-                    <div class="row justify-content-around">
-                        <div class="col-1">
-                            <img id="iconos" src="./image/icono-puerta.png" alt="icono-puerta">
-                        </div>
-                        <div class="col-3">                              
-                            <input class="form-control form-control-lg" id="iconos" type="text" name="puertas" placeholder="Puertas">
-                        </div>
-                        <div class="col-1">
-                            <img id="iconos" src="./image/icono-velocímetro.png" alt="icono-kms">
-                        </div>
-                        <div class="col-3">
-                            
-                            <input class="form-control form-control-lg" id="iconos" type="text" name="kms" placeholder="Kms">
-                        </div>             
-                        <div class="col-1">
-                            <img class="text-center" id="iconos" src="./image/icons-motor.png" alt="icono-potencia">
-                        </div>
-                        <div class="col-3">                            
-                            <input class="form-control form-control-md" id="iconos" type="text" name="potencia" placeholder="Potencia">
-                        </div>
-                    </div>          
-                
-                </fieldset>
-                
-                
-            </div>   
+                        <div class="row justify-content-around">
+                            <div class="col-1 ">
+                                <img id="iconos" src="./image/icono-puerta.png" alt="icono-puerta">
+                            </div>
+                            <div class="col-3">                              
+                                <input class="form-control form-control-lg" id="iconos" type="text" name="puertas" placeholder="Puertas">
+                            </div>
+                            <div class="col-1">
+                                <img id="iconos" src="./image/icono-velocímetro.png" alt="icono-kms">
+                            </div>
+                            <div class="col-3">
+                                
+                                <input class="form-control form-control-lg" id="iconos" type="text" name="kms" placeholder="Kms">
+                            </div>             
+                            <div class="col-1">
+                                <img class="text-center" id="iconos" src="./image/icons-motor.png" alt="icono-potencia">
+                            </div>
+                            <div class="col-3">                            
+                                <input class="form-control form-control-md" id="iconos" type="text" name="potencia" placeholder="Potencia">
+                            </div>
+                        </div>          
+                    
+                    </fieldset>
+                    
+                    
+                </div>
+        </div>   
 
             <div class="row justify-content-around">
                 <div class="col-2 ">
@@ -173,10 +167,10 @@
             </div>
         </form>
         </div>
-            <div id="spinner-container"></div>
+            <div class="text-center mt-3" id="spinner-container"></div>
             <div class="row justify-content-around mt-5">
-                <div class="col-md-8">
-                    <div id="divTabla"></div>
+                <div class="col-md-8 col-sm-start ">
+                    <div  id="divTabla"></div>
                 </div>
             </div>
 

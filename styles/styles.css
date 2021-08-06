@@ -107,7 +107,7 @@ p{
 
 
 footer{
-    height: 100px;
+    /* height: 100px; */
     background-color: rgb(24, 132, 168);
     display: flex;
     align-items: center;
@@ -123,11 +123,11 @@ header{
     height: 200px;
 }
 
-/* @media (max-width: 1200px){
-    header,footer,main{
+ @media (max-width: 1200px){
+    /* header,footer,main{
         flex-direction:row;
         align-items: center;
-    }
+    } */
     .portada{
          display: none;
     } 
@@ -140,7 +140,7 @@ header{
 
 @media (max-width: 640px){
     header,footer, main{
-        min-width: 600px;
+        min-width: 700px;
         flex-direction:row;
         align-items: center;
     }
@@ -150,7 +150,7 @@ header{
         align-items: center;
     }
 
-} */
+} 
 
 /* @media (max-width: 570px){
     header,footer, main {
