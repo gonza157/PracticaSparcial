@@ -1,0 +1,19 @@
+{
+    "Anuncios":[
+        {
+            "id": 1,
+            "nombre": "Donato",
+            "especialidad": "Pastas"
+        },
+        {
+            "id": 2,
+            "nombre": "German",
+            "especialidad": "Verduras"
+        },
+        {
+            "id": 3,
+            "nombre": "Damian",
+            "especialidad": "Postres"
+        }
+    ]
+}

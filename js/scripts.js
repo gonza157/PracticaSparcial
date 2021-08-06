@@ -15,29 +15,6 @@ document.getElementById("kmsch").addEventListener("click",filtrarTabla);
 document.getElementById("potenciach").addEventListener("click",filtrarTabla);
 document.getElementById("filtrar").addEventListener("change",filtrarPorTransaccion);
 
-// MAP/REDUCE/FILTER
-
-
-// const nuevoArray2 = Anuncios.map(bj=>{
-//   let aux = new Object;
-//   if(true){
-//     aux.titulo = bj.titulo;
-//     aux.descripcion = bj.descripcion;
-//   }
-//   return aux;
-// });
-// const precios = Anuncios.map(obj=>{
-//   return obj.precio;
-// })
-// const nuevoArray3 = precios.reduce((prev,actual)=>{
-//   return  parseInt(prev)  + parseInt(actual) / precios.length;
-// });
-
-
-
-// // console.log(nuevoArray);
-// // console.log(nuevoArray2);
-//  console.log(nuevoArray3);
 
 if (Anuncios.length > 0) {
   handlerLoadTabla(Anuncios);
